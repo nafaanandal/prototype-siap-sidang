@@ -4,15 +4,17 @@ function getData() {
             return res.json()
         })
         .then(data => {
+            let idFirebase
             let idNilai
             let nilaiUTS
             let nilaiUAS
             data.forEach(item => {
-                localStorage.setItem("idData", item.id);
+                idFirebase = item.id
                 idNilai = item.id_nilai
                 nilaiUTS = item.nilaiUTS
                 nilaiUAS = item.nilaiUAS
             })
+            document.querySelector('#idFirebase').value = idFirebase
             document.querySelector('#idNilai').value = idNilai
             document.querySelector('#nilaiUTS').value = nilaiUTS
             document.querySelector('#nilaiUAS').value = nilaiUAS
@@ -35,7 +37,7 @@ function updateData(id, idNilai, nilaiUTS, nilaiUAS) {
 getData()
 
 document.querySelector('#submitBtn').addEventListener('click', function () {
-    let idData = localStorage.getItem("idData");
+    let idData = document.querySelector('#idFirebase').value
     let elIDNilai = document.querySelector('#idNilai').value
     let elNnilaiUTS = document.querySelector('#nilaiUTS').value
     let elNnilaiUAS = document.querySelector('#nilaiUAS').value
